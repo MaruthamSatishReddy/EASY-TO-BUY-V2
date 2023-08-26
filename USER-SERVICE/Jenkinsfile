@@ -7,7 +7,8 @@ pipeline {
          steps {
             gitCheckout(
             branch: "master",
-            url: "https://github.com/MaruthamSatishReddy/user.git"
+            url: "https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git",
+            path: "USER-SERVICE"
             )
          }
       }
