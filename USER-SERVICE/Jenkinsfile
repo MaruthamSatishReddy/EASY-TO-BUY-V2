@@ -2,14 +2,10 @@
 
 pipeline {
    agent any
-   environment{
-     PATH = "/usr/share/maven/bin:$PATH"
-   }
    stages {
       stage('Git Checkout') {
          steps {
-            gitCheckout(
-             checkout([$class: 'GitSCM',
+            gitCheckout([$class: 'GitSCM',
                               branches: [[name: '*/master']],
                               userRemoteConfigs: [[url: 'https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git']]])
          }
