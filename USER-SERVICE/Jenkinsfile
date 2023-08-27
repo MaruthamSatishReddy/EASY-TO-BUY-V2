@@ -6,8 +6,8 @@ pipeline {
       stage('Git Checkout') {
          steps {
             gitCheckout([$class: 'GitSCM',
-                              branches: [[name: '*/master']],
-                              userRemoteConfigs: [[url: 'https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git']]])
+                branch: "master",
+                url: "https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git")
          }
       }
       stage('Maven Build') {
