@@ -15,6 +15,11 @@ pipeline {
             )
          }
       }
+      stage('Maven Command') {
+                     steps {
+                        mavenCommand()
+                     }
+                  }
       stage('Maven Build') {
                steps {
                   mavenBuild()
