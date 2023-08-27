@@ -9,17 +9,11 @@ pipeline {
       stage('Git Checkout') {
          steps {
             gitCheckout(
-            branch: "master",
-            url: "https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git",
-            path: "USER-SERVICE"
-            )
+             checkout([$class: 'GitSCM',
+                              branches: [[name: '*/master']],
+                              userRemoteConfigs: [[url: 'https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git']]])
          }
       }
-      stage('Maven Command') {
-                     steps {
-                        mavenCommand()
-                     }
-                  }
       stage('Maven Build') {
                steps {
                   mavenBuild()
