@@ -16,17 +16,23 @@ pipeline {
       }
       stage('Maven Build') {
                steps {
+                 dir('USER-SERVICE') {
                   mavenBuild()
+                  }
                }
             }
       stage('Maven Unit Test') {
             steps {
-            mavenTest()
+              dir('USER-SERVICE') {
+              mavenTest()
+             }
             }
           }
       stage('Maven Integration Test') {
                   steps{
+                  dir('USER-SERVICE') {
                   mavenIntegrationTest()
+                    }
                   }
                }
            }
