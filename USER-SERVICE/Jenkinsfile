@@ -7,7 +7,7 @@ pipeline {
          steps {
             gitCheckout([$class: 'GitSCM',
                 branch: "master",
-                url: "https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git"
+                url: "https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git"]
                 )
          }
       }
