@@ -1,36 +1,43 @@
 @Library('easyToBuy-Jenkins_SharedLib') _
 
 pipeline {
-   agent any
-   stages {
-      stage('Git Checkout') {
-         steps {
-            gitCheckout([$class: 'GitSCM',
-                branch: "master",
-                url: "https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git"]
-                )
-         }
+  agent any
+  stages {
+    stage('Git Checkout') {
+      steps {
+        gitCheckout([$class: 'GitSCM',
+          branch: "master",
+          url: "https://github.com/MaruthamSatishReddy/EASY-TO-BUY-V2.git"
+        ])
       }
-      stage('Maven Build') {
-               steps {
-                 dir('USER-SERVICE') {
-                  mavenBuild()
-                  }
-               }
-            }
-      stage('Maven Unit Test') {
-            steps {
-              dir('USER-SERVICE') {
-              mavenTest()
-             }
-            }
-          }
-      stage('Maven Integration Test') {
-                  steps{
-                  dir('USER-SERVICE') {
-                  mavenIntegrationTest()
-                    }
-                  }
-               }
-           }
-     }
+    }
+    stage('Maven Build') {
+      steps {
+        dir('USER-SERVICE') {
+          mavenBuild()
+        }
+      }
+    }
+    stage('Maven Unit Test') {
+      steps {
+        dir('USER-SERVICE') {
+          mavenTest()
+        }
+      }
+    }
+    stage('Maven Integration Test') {
+      steps {
+        dir('USER-SERVICE') {
+          mavenIntegrationTest()
+        }
+      }
+    }
+    stage('SonarQube Code Analysis') {
+      steps {
+        dir('USER-SERVICE') {
+          staticCodeAnalysis()
+        }
+      }
+    }
+  }
+}
