@@ -11,14 +11,7 @@ pipeline {
         ])
       }
     }
-    stage('Maven Build') {
-      steps {
-        dir('USER-SERVICE') {
-          mavenBuild()
-        }
-      }
-    }
-    stage('Maven Unit Test') {
+  stage('Maven Unit Test') {
       steps {
         dir('USER-SERVICE') {
           mavenTest()
@@ -43,6 +36,13 @@ pipeline {
           steps {
              dir('USER-SERVICE') {
               qualityGateWay('SonarQube')
+            }
+          }
+        }
+    stage('Maven Build') {
+          steps {
+            dir('USER-SERVICE') {
+              mavenBuild()
             }
           }
         }
