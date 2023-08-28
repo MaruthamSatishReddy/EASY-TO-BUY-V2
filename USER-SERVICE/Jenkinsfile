@@ -35,7 +35,7 @@ pipeline {
     stage('SonarQube Code Analysis') {
       steps {
         dir('USER-SERVICE') {
-          def sonarQubeCredentialsId='SonarQube';
+          def sonarQubeCredentialsId ='SonarQube'
           staticCodeAnalysis(sonarQubeCredentialsId)
         }
       }
