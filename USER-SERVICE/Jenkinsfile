@@ -32,12 +32,19 @@ pipeline {
         }
       }
     }
-    stage('SonarQube Code Analysis') {
+    stage('Code Analysis: SonarQube') {
       steps {
         dir('USER-SERVICE') {
           staticCodeAnalysis('SonarQube')
         }
       }
     }
+    stage('Quality Gate: SonarQube') {
+          steps {
+             dir('USER-SERVICE') {
+              qualityGateWay('SonarQube')
+            }
+          }
+        }
   }
 }
