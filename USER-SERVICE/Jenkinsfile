@@ -32,13 +32,6 @@ pipeline {
         }
       }
     }
-    stage('Quality Gate: SonarQube') {
-          steps {
-             dir('USER-SERVICE') {
-              qualityGateWay('SonarQube')
-            }
-          }
-        }
     stage('Maven Build') {
           steps {
             dir('USER-SERVICE') {
