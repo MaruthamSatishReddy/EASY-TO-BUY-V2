@@ -1,6 +1,5 @@
 FROM openjdk:17-jdk
-COPY . /app
 WORKDIR /app
-RUN ./mvnw clean package
+COPY . /target/*.jar /app.jar
 EXPOSE 9099
-CMD ["java", "-jar", "target/USER-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app.jar"]

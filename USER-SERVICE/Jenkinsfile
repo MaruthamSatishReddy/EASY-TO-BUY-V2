@@ -2,6 +2,12 @@
 
 pipeline {
   agent any
+   parameters{
+
+          string(name: 'ImageName', description: "Name of Docker Build", defaultValue: 'user-service')
+          string(name: 'ImageTag', description: "Tag for Docker Build", defaultValue: 'v1')
+          string(name: 'DockerHubUser', description: "Name of the Service", defaultValue: 'satishlakshmiudemy')
+      }
   stages {
     stage('Git Checkout') {
       steps {
@@ -39,5 +45,12 @@ pipeline {
             }
           }
         }
+    stage('Docker Image Build') {
+              steps {
+                dir('USER-SERVICE') {
+                  dockerImageBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                }
+              }
+            }
   }
 }
